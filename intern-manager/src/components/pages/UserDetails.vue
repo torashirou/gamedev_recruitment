@@ -1,7 +1,10 @@
 <script setup>
+import { RouterLink } from 'vue-router'
+import literals from '../../assets/literals';
+
 defineProps({
-  msg: {
-    type: String,
+  id: {
+    type: Number,
     required: true
   }
 })
@@ -9,12 +12,14 @@ defineProps({
 
 <template>
   <div class="greetings">
-    <h1 class="green">{{ msg }}</h1>
-    <h3>
-      You’ve successfully created a project with
-      <a href="https://vitejs.dev/" target="_blank" rel="noopener">Vite</a> +
-      <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>.
-    </h3>
+    <h1 class="green">{{ literals.userListTitle }}</h1>
+    <div class="list">
+      <div class="list__header">
+        <input type="text" placeholder="{{ literals.searchUsers }}" />
+        <RouterLink to="/user">Home</RouterLink>
+      </div>
+      <div class="list__content"></div>
+    </div>
   </div>
 </template>
 
