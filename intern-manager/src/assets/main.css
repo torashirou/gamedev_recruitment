@@ -1,35 +1,42 @@
 @import './base.css';
 
+body, html {
+  background: #f5f7f9;
+  color: #495056;
+}
+
 #app {
-  max-width: 1280px;
+  max-width: 1650px;
+  width: 95vw;
   margin: 0 auto;
   padding: 2rem;
 
   font-weight: normal;
 }
 
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
+h1 {
+  font-weight: 500;
+  font-size: 2.5rem;
+  padding-left: 5px;
+  margin-bottom: 25px;
 }
 
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
+a {
+  transition: all 0.3s ease;
 }
 
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
+.wrapper {
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
+  padding: 1.5rem;
+  border-radius: 5px;
+  background: #ffffff;
+  margin-bottom: 20px;
+}
 
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
+@media (min-width: 1920px) {
+  .container {
+    margin-top: 50px;
   }
 }
