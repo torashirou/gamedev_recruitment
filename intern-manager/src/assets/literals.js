@@ -1,7 +1,7 @@
 const literals = {
   userListTitle: 'User list',
   searchUsers: 'Search for users...',
-  addUser: 'Add User',
+  addUser: 'Add user',
   fullName: 'Full Name',
   action: 'Action',
   addListTitle: 'User list',

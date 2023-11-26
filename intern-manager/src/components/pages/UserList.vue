@@ -39,6 +39,14 @@ const filteredUsers = computed(() => {
     : users.value
 });
 
+const removeUser = (id) => {
+  fetch(`${literals.links.user}${id}`, {
+    method: 'DELETE'
+  }).then(() => {
+    getList(route);
+  })
+}
+
 </script>
 
 <template>
@@ -63,7 +71,7 @@ const filteredUsers = computed(() => {
           <span>{{ user.first_name }} {{ user.last_name }}</span>
           <span>
             <RouterLink :to="`/user/${user.id}`"><font-awesome-icon icon="pen-to-square" /> </RouterLink>
-            <a href="#remove"><font-awesome-icon icon="trash" /> </a>
+            <a href="#remove" @click="removeUser(user.id)"><font-awesome-icon icon="trash" /> </a>
           </span>
         </div>
       </div>
