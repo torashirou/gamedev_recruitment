@@ -13,7 +13,8 @@ const router = createRouter({
     {
       path: '/user/:id',
       name: 'about',
-      component: () => import('../components/pages/UserDetails.vue')
+      component: () => import('../components/pages/UserDetails.vue'),
+      alias: '/user'
     }
   ]
 })

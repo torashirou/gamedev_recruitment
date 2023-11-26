@@ -33,6 +33,28 @@ watch(hideInput, (newHideInput) => {
 
 getUser(route);
 
+const updateUser = () => {
+  fetch(`${literals.links.user}${route.params.id}`, {
+    method: 'PATCH',
+    body: JSON.stringify({
+      first_name: firstName,
+      last_name: lastName,
+      avatar: avatar
+    })
+  })
+}
+
+const createUser = () => {
+  fetch(literals.links.user, {
+    method: 'POST',
+    body: JSON.stringify({
+      first_name: firstName,
+      last_name: lastName,
+      avatar: avatar
+    })
+  })
+}
+
 </script>
 
 <template>
@@ -43,19 +65,19 @@ getUser(route);
         <div class="user__form">
           <div class="user__data">
             <label>{{ literals.firstName }}</label>
-            <input type="text" name="first_name" :value="firstName">
+            <input type="text" name="first_name" v-model="firstName">
           </div>
           <div class="user__data">
             <label>{{ literals.lastName }}</label>
-            <input type="text" name="last_name" :value="lastName">
+            <input type="text" name="last_name" v-model="lastName">
           </div>
         </div>
-        <a class="user__update" href="#update">{{ literals.updateDetails }}</a>
+        <a class="user__update" @click="newIntern ? createUser() : updateUser()">{{ literals.updateDetails }}</a>
       </div>
       <div class="user__avatar wrapper">
         <span><img :src="avatar"/></span>
-        <input type="text" name="avatar" :class="inputClass" />
-        <button @click="hideInput = !hideInput"><font-awesome-icon icon="camera" />{{ literals.changePhoto }}</button>
+        <input type="text" name="avatar" :class="inputClass" v-model="avatar" />
+        <button @click="(e) => {e.preventDefault(); hideInput = !hideInput}"><font-awesome-icon icon="camera" />{{ literals.changePhoto }}</button>
       </div>
     </div>
   </div>
@@ -153,6 +175,7 @@ getUser(route);
   width: 100%;
   border-radius: 5px;
   text-decoration: none;
+  cursor: pointer;
 }
 
 @media (min-width: 576px) {
