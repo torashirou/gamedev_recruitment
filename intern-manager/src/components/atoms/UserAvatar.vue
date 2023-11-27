@@ -20,6 +20,7 @@ span {
   align-items: center;
   justify-content: center;
   margin-bottom: 20px;
+
 }
 
 span img {
@@ -28,9 +29,9 @@ span img {
   border-radius: 100%;
 }
 
-@media (min-width: 576px) {
+@media (min-width: 992px) {
   span {
-    margin-bottom: 0;
+    margin-bottom: auto;
   }
 }
 </style>

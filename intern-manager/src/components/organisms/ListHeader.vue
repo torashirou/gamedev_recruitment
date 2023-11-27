@@ -2,7 +2,9 @@
 import { RouterLink } from 'vue-router';
 import literals from '../../assets/literals';
 
-defineProps(['filter']);
+defineProps({
+  filter: String
+});
 defineEmits(['update:filter']);
 
 </script>

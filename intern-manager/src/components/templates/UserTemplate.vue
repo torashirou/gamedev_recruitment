@@ -40,7 +40,7 @@ const dynamicAvatar = computed(() => {
 
 <template>
   <div v-if="loaded" class="user">
-    <UserDetailsWrapper :first-name="firstName" :last-name="lastName" :avatar="dynamicAvatar" :new-intern="newIntern" :id="route.params.id"></UserDetailsWrapper>
+    <UserDetailsWrapper :first-name="firstName" :last-name="lastName" :avatar="dynamicAvatar" :new-intern="newIntern" :id="parseInt(route.params.id)"></UserDetailsWrapper>
     <UserAvatarWrapper :avatar="avatar" @update:avatar="newAvatar => avatar = newAvatar"></UserAvatarWrapper>
   </div>
   <LoadingPage v-else></LoadingPage>
