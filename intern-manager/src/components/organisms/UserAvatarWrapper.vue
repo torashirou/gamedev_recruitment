@@ -1,7 +1,7 @@
 <script setup>
 import { ref, watch } from 'vue'
 import UserAvatar from '../atoms/UserAvatar.vue';
-import literals from '../../assets/literals';
+import literals from '../../assets/globals';
 
 const props = defineProps({
   avatar: String,

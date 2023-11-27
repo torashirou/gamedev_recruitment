@@ -1,5 +1,5 @@
 <script setup>
-import literals from '../../assets/literals';
+import literals from '../../assets/globals';
 </script>
 
 <template>

@@ -1,5 +1,6 @@
 <script setup>
-import literals from '../../assets/literals';
+import literals, { links } from '../../assets/globals';
+import useFetch from '../../assets/hooks/useFetch';
 
 const props = defineProps({
   newIntern: Boolean,
@@ -9,32 +10,28 @@ const props = defineProps({
   id: Number
 });
 
-const updateUser = () => {
-  fetch(`${literals.links.user}${props.id}`, {
-    method: 'PATCH',
-    body: JSON.stringify({
-      first_name: props.firstName,
-      last_name: props.lastName,
-      avatar: props.avatar
-    })
+const updateUser = async () => {
+  const update = useFetch(`${links.user}${props.id}`, 'PATCH');
+  await update.execute({
+    first_name: props.firstName,
+    last_name: props.lastName,
+    avatar: props.avatar
   })
 }
 
-const createUser = () => {
-  fetch(literals.links.user, {
-    method: 'POST',
-    body: JSON.stringify({
-      first_name: props.firstName,
-      last_name: props.lastName,
-      avatar: props.avatar
-    })
+const createUser = async () => {
+  const create = useFetch(links.user, 'POST');
+  await create.execute({
+    first_name: props.firstName,
+    last_name: props.lastName,
+    avatar: props.avatar
   })
 }
 
 </script>
 
 <template>
-  <a @click="props.newIntern ? createUser() : updateUser()">{{ literals.updateDetails }}</a>
+  <a @click="props.newIntern ? createUser() : updateUser()">{{ newIntern ? literals.addUser : literals.updateDetails }}</a>
 </template>
 
 <style scoped>
@@ -50,6 +47,7 @@ a {
   border-radius: 5px;
   text-decoration: none;
   cursor: pointer;
+  text-transform: capitalize;
 }
 
 @media (min-width: 576px) {

@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import UserList from '../components/pages/UserList.vue'
+import UserDetails from '../components/pages/UserDetails.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -7,13 +8,17 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
+      redirect: '/list/1'
+    },
+    {
+      path: '/list/:id',
+      name: 'list',
       component: UserList,
-      alias: '/list/:id?'
     },
     {
       path: '/user/:id?',
       name: 'about',
-      component: () => import('../components/pages/UserDetails.vue'),
+      component: UserDetails,
       alias: '/user'
     }
   ]

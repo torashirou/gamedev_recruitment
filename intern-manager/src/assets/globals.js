@@ -7,12 +7,13 @@ const literals = {
   addListTitle: 'User list',
   firstName: 'First Name',
   lastName: 'Last Name',
-  updateDetails: 'Update Details',
+  updateDetails: 'Update details',
   changePhoto: 'Change Photo',
-  links: {
-    list: 'https://reqres.in/api/users?page=',
-    user: 'https://reqres.in/api/users/'
-  }
+};
+
+export const links = {
+  list: 'https://reqres.in/api/users?page=',
+  user: 'https://reqres.in/api/users/'
 };
 
 export default literals;

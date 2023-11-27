@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue';
-import literals from '../../assets/literals';
+import literals from '../../assets/globals';
 
 const props = defineProps({
   firstName: String,

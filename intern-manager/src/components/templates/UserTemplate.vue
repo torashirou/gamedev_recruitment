@@ -4,7 +4,8 @@ import { useRoute } from 'vue-router';
 import UserDetailsWrapper from '../organisms/UserDetailsWrapper.vue';
 import UserAvatarWrapper from '../organisms/UserAvatarWrapper.vue';
 import LoadingPage from '../atoms/LoadingPage.vue';
-import literals from '../../assets/literals';
+import { links } from '../../assets/globals';
+import useFetch from '../../assets/hooks/useFetch'
 
 const newIntern = ref(true);
 const firstName = ref('');
@@ -16,19 +17,20 @@ const route = useRoute();
 
 if (route.params.id) newIntern.value = false;
 
-const getUser = (route) => {
-  if (!newIntern.value)
-    fetch(`${literals.links.user}${route.params.id}`)
-    .then((res) => res.json())
-    .then((data) => {
-      firstName.value = data.data.first_name;
-      lastName.value = data.data.last_name;
-      avatar.value = data.data.avatar;
-      loaded.value = true;
-    });
-  else {
+const getUser = async (route) => {
+  if (!newIntern.value) {
+    const user = useFetch(`${links.user}${route.params.id}`);
+    const { data } = await user.execute();
+    if (!data) {
+      return false;
+    }
+    const { data: userData } = data;
+    firstName.value = userData.first_name;
+    lastName.value = userData.last_name;
+    avatar.value = userData.avatar;
     loaded.value = true;
   }
+  loaded.value = true;
 }
 
 getUser(route);
@@ -40,7 +42,7 @@ const dynamicAvatar = computed(() => {
 
 <template>
   <div v-if="loaded" class="user">
-    <UserDetailsWrapper :first-name="firstName" :last-name="lastName" :avatar="dynamicAvatar" :new-intern="newIntern" :id="parseInt(route.params.id)"></UserDetailsWrapper>
+    <UserDetailsWrapper :first-name="firstName" :last-name="lastName" :avatar="dynamicAvatar" :new-intern="newIntern" :id="parseInt(route.params.id, 10)"></UserDetailsWrapper>
     <UserAvatarWrapper :avatar="avatar" @update:avatar="newAvatar => avatar = newAvatar"></UserAvatarWrapper>
   </div>
   <LoadingPage v-else></LoadingPage>

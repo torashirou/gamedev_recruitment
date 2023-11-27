@@ -1,6 +1,6 @@
 <script setup>
 import { RouterLink } from 'vue-router';
-import literals from '../../assets/literals';
+import literals from '../../assets/globals';
 
 defineProps({
   filter: String
