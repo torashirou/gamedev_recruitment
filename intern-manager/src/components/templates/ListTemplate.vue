@@ -24,7 +24,7 @@ const filteredUsers = computed(() => {
 
 <template>
   <div class="list wrapper">
-    <ListHeader :model-value="filter" @update:model-value="newFilter => filter = newFilter"></ListHeader>
+    <ListHeader :filter="filter" @update:filter="newFilter => filter = newFilter"></ListHeader>
     <ListContent :users="filteredUsers" :remove-user="props.removeUser"></ListContent>
   </div>
 </template>

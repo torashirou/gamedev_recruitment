@@ -12,7 +12,7 @@ const props = defineProps({
 <template>
   <span>
     <RouterLink :to="props.link"><font-awesome-icon icon="pen-to-square" /> </RouterLink>
-    <a href="#remove" @click="(e) => {e.preventDefault(); props.removeUser(props.id)}"><font-awesome-icon icon="trash" /> </a>
+    <a href="#remove" @click="$event.preventDefault(); props.removeUser(props.id)"><font-awesome-icon icon="trash" /> </a>
   </span>
 </template>
 

@@ -2,15 +2,15 @@
 import { RouterLink } from 'vue-router';
 import literals from '../../assets/literals';
 
-defineProps(['modelValue']);
-defineEmits(['update:modelValue']);
+defineProps(['filter']);
+defineEmits(['update:filter']);
 
 </script>
 
 <template>
   <div>
     <span>
-      <input type="text" :value="modelValue" @input="$emit('update:modelValue', $event.target.value)" :placeholder="literals.searchUsers" />
+      <input type="text" :value="filter" @input="$emit('update:filter', $event.target.value)" :placeholder="literals.searchUsers" />
       <font-awesome-icon icon="magnifying-glass" />
     </span>
     <RouterLink to="/user"><font-awesome-icon icon="plus" />Add User</RouterLink>

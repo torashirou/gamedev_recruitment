@@ -8,10 +8,10 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: UserList,
-      alias: '/list/:id'
+      alias: '/list/:id?'
     },
     {
-      path: '/user/:id',
+      path: '/user/:id?',
       name: 'about',
       component: () => import('../components/pages/UserDetails.vue'),
       alias: '/user'
