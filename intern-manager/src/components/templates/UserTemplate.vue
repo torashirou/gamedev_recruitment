@@ -69,8 +69,13 @@ const dynamicAvatar = computed(() => {
 .user {
   display: flex;
   justify-content: space-between;
-  margin: 0 -15px;
   flex-direction: column-reverse;
+}
+
+@media (min-width: 992px) {
+  .user {
+    margin: 0 -15px;
+  }
 }
 
 @media (min-width: 992px) {
