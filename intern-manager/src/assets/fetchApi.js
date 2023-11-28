@@ -2,7 +2,8 @@ const fetchApi = async (endpoint, options) => {
   const res = await fetch(endpoint, options);
 
   if (!res.ok) {
-    throw new Error(res.statusText)
+    // throw new Error(res.statusText)
+    return {};
   }
 
   try {

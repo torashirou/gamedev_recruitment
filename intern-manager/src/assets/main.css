@@ -9,7 +9,6 @@ body, html {
   max-width: 1650px;
   width: 95vw;
   margin: 0 auto;
-  padding: 2rem;
 
   font-weight: normal;
 }
@@ -33,6 +32,12 @@ a {
   border-radius: 5px;
   background: #ffffff;
   margin-bottom: 20px;
+}
+
+@media (min-width: 576px) {
+  #app {
+    padding: 2rem;
+  }
 }
 
 @media (min-width: 1920px) {

@@ -14,6 +14,7 @@ const props = defineProps({
   id: Number
 });
 
+// Update user details
 const updateUser = async () => {
   const update = useFetch(`${links.apiUser}${props.id}`, 'PATCH');
   await update.execute({
@@ -21,6 +22,7 @@ const updateUser = async () => {
     last_name: props.lastName,
     avatar: props.avatar
   })
+  // Show confirmation popup
   await popup.value.show({
     title: literals.updated,
     message: literals.updatedMessage,
@@ -28,6 +30,7 @@ const updateUser = async () => {
   })
 }
 
+// Create new user
 const createUser = async () => {
   const create = useFetch(links.apiUser, 'POST');
   const { data } = await create.execute({
@@ -35,12 +38,14 @@ const createUser = async () => {
     last_name: props.lastName,
     avatar: props.avatar
   })
+  // Show confirmation popup
   const ok = await popup.value.show({
     title: literals.created,
     message: literals.createdMessage,
     okButton: literals.yes,
     cancelButton: literals.no,
   })
+  // If user wants to visit details page of newly created user - redirect him to correct page
   if (ok) {
     window.location.href = `${links.user}${data.id}`;
   }

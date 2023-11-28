@@ -3,28 +3,42 @@ import { ref, computed } from 'vue';
 import { useRoute } from 'vue-router';
 import UserDetailsWrapper from '../organisms/UserDetailsWrapper.vue';
 import UserAvatarWrapper from '../organisms/UserAvatarWrapper.vue';
+import PopupConfirm from '../molecules/PopupConfirm.vue';
 import LoadingPage from '../atoms/LoadingPage.vue';
-import { links } from '../../assets/globals';
+import literals, { links } from '../../assets/globals';
 import useFetch from '../../assets/hooks/useFetch'
 
 const newIntern = ref(true);
 const firstName = ref('');
 const lastName = ref('');
 const avatar = ref('https://cdn-icons-png.flaticon.com/512/147/147285.png');
+const popup = ref(null);
 const loaded = ref(false);
 
 const route = useRoute();
 
 if (route.params.id) newIntern.value = false;
 
+// Get user data
 const getUser = async (route) => {
+  // If updating already existing user
   if (!newIntern.value) {
+    // Fetch user data
     const user = useFetch(`${links.apiUser}${route.params.id}`);
     const { data } = await user.execute();
-    if (!data) {
+    const { data: userData } = data;
+    // If there is no such user
+    if (!data || !userData) {
+      const ok = await popup.value.show({
+        title: literals.userNotFound,
+        message: literals.userNotFoundMessage,
+        okButton: literals.returnList,
+      })
+      // Redirect to the list of users
+      if (ok) window.location.href = links.list;
       return false;
     }
-    const { data: userData } = data;
+    // Saving data
     firstName.value = userData.first_name;
     lastName.value = userData.last_name;
     avatar.value = userData.avatar;
@@ -35,6 +49,7 @@ const getUser = async (route) => {
 
 getUser(route);
 
+// Observe changes in avatar link
 const dynamicAvatar = computed(() => {
   return avatar
 })
@@ -46,6 +61,7 @@ const dynamicAvatar = computed(() => {
     <UserAvatarWrapper :avatar="avatar" @update:avatar="newAvatar => avatar = newAvatar"></UserAvatarWrapper>
   </div>
   <LoadingPage v-else></LoadingPage>
+  <PopupConfirm ref="popup"></PopupConfirm>
 </template>
 
 

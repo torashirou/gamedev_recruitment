@@ -7,10 +7,10 @@ export default {
 
     data: () => ({
         // Parameters that change depending on the type of dialogue
-        title: undefined,
+        title: undefined, // Title of popup
         message: undefined, // Main text content
         okButton: undefined, // Text for confirm button; leave it empty because we don't know what we're using it for
-        cancelButton: undefined, // text for cancel button, when undefined - no cancel button appears
+        cancelButton: undefined, // Text for cancel button, when undefined - no cancel button appears
         
         // Private variables
         resolvePromise: undefined,
@@ -42,8 +42,6 @@ export default {
         _cancel() {
             this.$refs.popup.close()
             this.resolvePromise(false)
-            // Or you can throw an error
-            // this.rejectPromise(new Error('User canceled the dialogue'))
         },
     },
 }

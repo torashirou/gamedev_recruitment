@@ -17,14 +17,17 @@ const literals = {
   updatedMessage: 'You have successfully updated user',
   created: 'New user created',
   createdMessage: 'You have successfully created new user. Do you want to visit his details site?',
+  userNotFound: 'User not found',
+  userNotFoundMessage: 'There is no user with that ID',
+  returnList: 'Return to list page',
   yes: 'Yes',
   no: 'No',
   ok: 'Ok',
 };
 
 export const links = {
-  list: 'https://reqres.in/api/users?page=',
-  user: 'https://reqres.in/api/users/',
+  list: '/list/',
+  user: '/user/',
   apiList: 'https://reqres.in/api/users?page=',
   apiUser: 'https://reqres.in/api/users/'
 };

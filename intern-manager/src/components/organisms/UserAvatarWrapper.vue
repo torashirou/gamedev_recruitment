@@ -13,6 +13,7 @@ const hideInput = ref(false);
 const inputClass = ref('--hidden')
 const avatar = ref(props.avatar);
 
+// Toggle input visibility
 watch(hideInput, (newHideInput) => {
   newHideInput ? inputClass.value = '--show' : inputClass.value = '--hidden';
 })

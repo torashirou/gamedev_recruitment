@@ -10,6 +10,7 @@ const props = defineProps({
 
 const filter = ref('');
 
+// Filter users based on string passed in input
 const filteredUsers = computed(() => {
   return filter.value !== ''
     ? props.users.filter((u) => {

@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import UserForm from '../molecules/UserForm.vue';
 import UserUpdate from '../molecules/UserUpdate.vue';
 
@@ -13,20 +13,14 @@ const props = defineProps({
 
 const firstName = ref(props.firstName);
 const lastName = ref(props.lastName);
-
-const dynamicData = computed(() => {
-  return {
-    firstName: firstName,
-    lastName: lastName,
-  }
-})
+const avatar = ref(props.avatar);
 
 </script>
 
 <template>
   <div class="wrapper">
     <UserForm :first-name="firstName" :last-name="lastName" @update:firstName="newFirstName => firstName = newFirstName" @update:lastName="newLastName => lastName = newLastName"></UserForm>
-    <UserUpdate :new-intern="newIntern" :first-name="dynamicData.firstName" :last-name="dynamicData.lastName" :avatar="props.avatar" :id="props.id"></UserUpdate>
+    <UserUpdate :new-intern="newIntern" :first-name="firstName" :last-name="lastName" :avatar="avatar" :id="props.id"></UserUpdate>
   </div>
 </template>
 

@@ -1,20 +1,23 @@
 <script>
 export default {
-    name: 'PopupBasic',
+  name: 'PopupBasic',
 
-    data: () => ({
-        isVisible: false,
-    }),
+  // private variables
+  data: () => ({
+    isVisible: false,
+  }),
 
-    methods: {
-        open() {
-            this.isVisible = true
-        },
-
-        close() {
-            this.isVisible = false
-        },
+  methods: {
+    // Show popup
+    open() {
+      this.isVisible = true
     },
+
+    // Hide popup
+    close() {
+      this.isVisible = false
+    },
+  },
 }
 </script>
 
@@ -49,13 +52,14 @@ export default {
     display: flex;
     align-items: center;
     z-index: 1;
+    margin: 0;
 }
 
 .window {
     background: #fff;
     border-radius: 5px;
     box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);
-    max-width: 480px;
+    max-width: 95vw;
     margin-left: auto;
     margin-right: auto;
     padding: 1rem;

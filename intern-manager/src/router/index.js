@@ -8,6 +8,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
+      alias: '/list/',
       redirect: '/list/1'
     },
     {
