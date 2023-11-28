@@ -11,7 +11,7 @@ if (route.params.id) newIntern.value = false;
 
 <template>
   <div class="container">
-    <h1>{{ newIntern ? literals.addUser : literals.updateDetails }}</h1>
+    <h1>{{ newIntern ? literals.addUser : literals.userDetails }}</h1>
     <UserTemplate></UserTemplate>
   </div>
 </template>
