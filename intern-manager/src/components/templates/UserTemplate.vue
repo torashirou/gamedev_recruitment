@@ -19,7 +19,7 @@ if (route.params.id) newIntern.value = false;
 
 const getUser = async (route) => {
   if (!newIntern.value) {
-    const user = useFetch(`${links.user}${route.params.id}`);
+    const user = useFetch(`${links.apiUser}${route.params.id}`);
     const { data } = await user.execute();
     if (!data) {
       return false;

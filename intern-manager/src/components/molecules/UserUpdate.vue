@@ -1,6 +1,10 @@
 <script setup>
+import { ref } from 'vue';
+import PopupConfirm from './PopupConfirm.vue';
 import literals, { links } from '../../assets/globals';
 import useFetch from '../../assets/hooks/useFetch';
+
+const popup = ref(null);
 
 const props = defineProps({
   newIntern: Boolean,
@@ -11,27 +15,44 @@ const props = defineProps({
 });
 
 const updateUser = async () => {
-  const update = useFetch(`${links.user}${props.id}`, 'PATCH');
+  const update = useFetch(`${links.apiUser}${props.id}`, 'PATCH');
   await update.execute({
     first_name: props.firstName,
     last_name: props.lastName,
     avatar: props.avatar
   })
+  await popup.value.show({
+    title: literals.updated,
+    message: literals.updatedMessage,
+    okButton: literals.ok
+  })
 }
 
 const createUser = async () => {
-  const create = useFetch(links.user, 'POST');
-  await create.execute({
+  const create = useFetch(links.apiUser, 'POST');
+  const { data } = await create.execute({
     first_name: props.firstName,
     last_name: props.lastName,
     avatar: props.avatar
   })
+  const ok = await popup.value.show({
+    title: literals.created,
+    message: literals.createdMessage,
+    okButton: literals.yes,
+    cancelButton: literals.no,
+  })
+  if (ok) {
+    window.location.href = `${links.user}${data.id}`;
+  }
 }
+
+
 
 </script>
 
 <template>
   <a @click="props.newIntern ? createUser() : updateUser()">{{ newIntern ? literals.addUser : literals.updateDetails }}</a>
+  <PopupConfirm ref="popup"></PopupConfirm>
 </template>
 
 <style scoped>

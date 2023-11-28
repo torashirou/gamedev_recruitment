@@ -5,8 +5,14 @@ const fetchApi = async (endpoint, options) => {
     throw new Error(res.statusText)
   }
 
-  const json = await res.json();
-  return json;
+  try {
+    const json = await res.json();
+    return json;
+  } catch(err) {
+    console.warn('Response is not a JSON');
+    // throw new Error(err);
+    return {};
+  }
 }
 
 export default fetchApi;

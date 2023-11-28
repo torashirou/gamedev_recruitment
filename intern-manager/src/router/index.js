@@ -11,7 +11,7 @@ const router = createRouter({
       redirect: '/list/1'
     },
     {
-      path: '/list/:id',
+      path: '/list/:id?',
       name: 'list',
       component: UserList,
     },
